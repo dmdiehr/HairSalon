@@ -14,7 +14,7 @@ namespace HairSalon
       };
       Post["/output"] = _ =>
       {
-        
+        string result = "";
         return View["output.cshtml", result];
       };
     }
