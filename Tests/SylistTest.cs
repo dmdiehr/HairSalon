@@ -126,7 +126,22 @@ namespace HairSalon.Objects
 
       //Assert
       Assert.Equal(compareList, resultList);
+    }
+    [Fact]
+    public void Test_UpdateStylistInDatabase()
+    {
+      //Arrange
+      Stylist testStylist = new Stylist("Jessica");
+      testStylist.Save();
+      string newName = "Jesse";
 
+      //Act
+      testStylist.Update(newName);
+
+      string result = testStylist.GetName();
+
+      //Assert
+      Assert.Equal(newName, result);
     }
 /////// Tear Down/////////////
     public void Dispose()
