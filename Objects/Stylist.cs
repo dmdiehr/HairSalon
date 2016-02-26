@@ -204,7 +204,7 @@ namespace HairSalon.Objects
     SqlDataReader rdr;
     conn.Open();
 
-    SqlCommand cmd = new SqlCommand("UPDATE stylists SET name = @NewName OUTPUT INSERTED.name WHERE id = @StylistId;", conn);
+    SqlCommand cmd = new SqlCommand("UPDATE stylists SET name=@NewName OUTPUT INSERTED.name WHERE id=@StylistId;", conn);
 
     SqlParameter newNameParameter = new SqlParameter();
     newNameParameter.ParameterName = "@NewName";
