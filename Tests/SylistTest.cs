@@ -68,6 +68,43 @@ namespace HairSalon.Objects
       Assert.Equal(beforeList, beforeCompareList);
       Assert.Equal(afterList, afterCompareList);
     }
+    [Fact]
+    public void Find_StylistInDb()
+    {
+      //Arrange
+      Stylist testStylist = new Stylist("Jessica");
+      testStylist.Save();
+
+      //Act
+      Stylist foundStylist = Stylist.Find(testStylist.GetId());
+
+      //Assert
+      Assert.Equal(testStylist, foundStylist);
+    }
+    // public
+    // [Fact]
+    // public void Test_StylistDelete_UpdatesClientStylistId()
+    // {
+    //   //Arrange
+    //   Stylist dummyStylist1 = new Stylist("Jessica");
+    //   dummyStylist1.Save();
+    //   Stylist dummyStylist2 = new Stylist("Melissa");
+    //   dummyStylist2.Save();
+    //
+    //   Client beforeClient1 = new Client("David", 1);
+    //   beforeClient1.Save();
+    //   Client beforeClient2 = new Client("Max", 2);
+    //   beforeClient2.Save();
+    //
+    //   //Act
+    //   dummyStylist1.Delete();
+    //   afterClient1 = Client.Find(beforeClient1.GetId());
+    //   afterClient2 = Client.Find(beforeClient2.GetId());
+    //
+    //   //Assert
+    //   Assert.Equal(0, dummyClient1.GetStylistId());
+    //   Assert.Equal(2, dummyClient2.GetStylistId());
+    // }
 /////// Tear Down/////////////
     public void Dispose()
     {

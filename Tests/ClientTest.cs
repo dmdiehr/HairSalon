@@ -67,6 +67,19 @@ namespace HairSalon.Objects
       Assert.Equal(beforeList, beforeCompareList);
       Assert.Equal(afterList, afterCompareList);
     }
+    [Fact]
+    public void Find_ClientInDb()
+    {
+      //Arrange
+      Client testClient = new Client("David");
+      testClient.Save();
+
+      //Act
+      Client foundClient = Client.Find(testClient.GetId());
+
+      //Assert
+      Assert.Equal(testClient, foundClient);
+    }
 /////// Tear Down/////////////
     public void Dispose()
     {

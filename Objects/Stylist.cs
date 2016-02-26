@@ -119,6 +119,8 @@ namespace HairSalon.Objects
 
       SqlCommand cmd = new SqlCommand("DELETE FROM stylists WHERE id=@StylistId;", conn);
 
+      // UPDATE clients SET stylist_id=0 WHERE stylist_id=@StylistId;
+
       SqlParameter stylistIdParameter = new SqlParameter();
       stylistIdParameter.ParameterName = "@StylistId";
       stylistIdParameter.Value = this.GetId();
@@ -130,6 +132,39 @@ namespace HairSalon.Objects
       {
         conn.Close();
       }
+    }
+    public static Stylist Find(int id)
+    {
+      SqlConnection conn = DB.Connection();
+      SqlDataReader rdr = null;
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM stylists WHERE id = @StylistId;", conn);
+      SqlParameter stylistIdParameter = new SqlParameter();
+      stylistIdParameter.ParameterName = "@StylistId";
+      stylistIdParameter.Value = id.ToString();
+      cmd.Parameters.Add(stylistIdParameter);
+      rdr = cmd.ExecuteReader();
+
+      int foundStylistId = 0;
+      string foundStylistDescription = null;
+
+      while(rdr.Read())
+      {
+        foundStylistId = rdr.GetInt32(0);
+        foundStylistDescription = rdr.GetString(1);
+      }
+      Stylist foundStylist = new Stylist(foundStylistDescription, foundStylistId);
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return foundStylist;
     }
 
 
