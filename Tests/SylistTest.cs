@@ -107,6 +107,27 @@ namespace HairSalon.Objects
       Assert.Equal(0, afterClient1.GetStylistId());
       Assert.Equal(dummyStylist2Id, afterClient2.GetStylistId());
     }
+    [Fact]
+    public void Test_GetClientsList()
+    {
+      //Arrange
+      Stylist newStylist = new Stylist("Jessica");
+      newStylist.Save();
+
+      Client newClient1 = new Client("David", newStylist.GetId());
+      newClient1.Save();
+      Client newClient2 = new Client("Max", newStylist.GetId());
+      newClient2.Save();
+
+      List<Client> compareList = new List<Client> {newClient1, newClient2};
+
+      //Act
+      List<Client> resultList = newStylist.GetClients();
+
+      //Assert
+      Assert.Equal(compareList, resultList);
+
+    }
 /////// Tear Down/////////////
     public void Dispose()
     {
