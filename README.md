@@ -20,7 +20,7 @@ stylists and clients.
 * _1>USE hair\_salon;_
 * _2>GO_
 * _1>CREATE TABLE stylist (id INT IDENTITY(1,1), name VARCHAR(255));_
-* _2>CREATE TABLE client (id INT IDENTITY(1,1), name VARCHAR(255));_
+* _2>CREATE TABLE client (id INT IDENTITY(1,1), name VARCHAR(255), stylist_id INT);_
 * _3>GO_
 * _1>Quit_
 * _In the Windows Powershell navigate to the project folder_

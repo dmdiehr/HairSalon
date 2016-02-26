@@ -5,18 +5,19 @@ namespace HairSalon.Objects
 {
   public class Stylist
   {
+    private int _id;
+    private string _name;
 
-
-
-    public Stylist()
+    public Stylist(string name, int id=0)
     {
-
+      _name = name;
+      _id = id;
     }
 
 
-    public method()
-    {
-
-    }
+    // public method()
+    // {
+    //
+    // }
   }
 }
