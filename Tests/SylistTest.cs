@@ -81,30 +81,32 @@ namespace HairSalon.Objects
       //Assert
       Assert.Equal(testStylist, foundStylist);
     }
-    // public
-    // [Fact]
-    // public void Test_StylistDelete_UpdatesClientStylistId()
-    // {
-    //   //Arrange
-    //   Stylist dummyStylist1 = new Stylist("Jessica");
-    //   dummyStylist1.Save();
-    //   Stylist dummyStylist2 = new Stylist("Melissa");
-    //   dummyStylist2.Save();
-    //
-    //   Client beforeClient1 = new Client("David", 1);
-    //   beforeClient1.Save();
-    //   Client beforeClient2 = new Client("Max", 2);
-    //   beforeClient2.Save();
-    //
-    //   //Act
-    //   dummyStylist1.Delete();
-    //   afterClient1 = Client.Find(beforeClient1.GetId());
-    //   afterClient2 = Client.Find(beforeClient2.GetId());
-    //
-    //   //Assert
-    //   Assert.Equal(0, dummyClient1.GetStylistId());
-    //   Assert.Equal(2, dummyClient2.GetStylistId());
-    // }
+    [Fact]
+    public void Test_StylistDelete_UpdatesClientStylistId()
+    {
+      //Arrange
+      Stylist dummyStylist1 = new Stylist("Jessica");
+      dummyStylist1.Save();
+      int dummyStylist1Id = dummyStylist1.GetId();
+      Stylist dummyStylist2 = new Stylist("Melissa");
+      dummyStylist2.Save();
+      int dummyStylist2Id = dummyStylist2.GetId();
+
+
+      Client beforeClient1 = new Client("David", dummyStylist1Id);
+      beforeClient1.Save();
+      Client beforeClient2 = new Client("Max", dummyStylist2Id);
+      beforeClient2.Save();
+
+      //Act
+      dummyStylist1.Delete();
+      Client afterClient1 = Client.Find(beforeClient1.GetId());
+      Client afterClient2 = Client.Find(beforeClient2.GetId());
+
+      //Assert
+      Assert.Equal(0, afterClient1.GetStylistId());
+      Assert.Equal(dummyStylist2Id, afterClient2.GetStylistId());
+    }
 /////// Tear Down/////////////
     public void Dispose()
     {
