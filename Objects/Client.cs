@@ -29,12 +29,34 @@ namespace HairSalon.Objects
         bool stylistIdEquality. this.GetStylistId() == newClient.GetStylistId();
         return (idEquality && nameEquality && stylistIdEquality);
       }
+
     }
-
-
-    // public method()
-    // {
-    //
-    // }
+    public static void DeleteAll()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd = new SqlCommand("DELETE FROM clients;", conn);
+      cmd.ExecuteNonQuery();
+    }
+    public int GetId()
+    {
+      return _id;
+    }
+    public string GetName()
+    {
+      return _name;
+    }
+    public void SetName(string newName)
+    {
+      _name = newName;
+    }
+    public int GetStylistId()
+    {
+      return _stylistId;
+    }
+    public void SetStylistId(int newStylist)
+    {
+      _stylistId = newStylist
+    }
   }
 }

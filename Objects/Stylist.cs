@@ -26,10 +26,25 @@ namespace HairSalon.Objects
         bool nameEquality = this.GetName() == newStylist.GetName();
         return (idEquality && nameEquality);
       }
-
-    // public method()
-    // {
-    //
-    // }
+    }
+    public static void DeleteAll()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd = new SqlCommand("DELETE FROM stylists;", conn);
+      cmd.ExecuteNonQuery();
+    }
+    public int GetId()
+    {
+      return _id;
+    }
+    public string GetName()
+    {
+      return _name;
+    }
+    public void SetName(string newName)
+    {
+      _name = newName;
+    }
   }
 }
