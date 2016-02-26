@@ -44,6 +44,29 @@ namespace HairSalon.Objects
       //Assert
       Assert.Equal(testList, result);
     }
+    [Fact]
+    public void Test_ClientDelete()
+    {
+      //Arrange
+      Client dummyClient1 = new Client("David");
+      dummyClient1.Save();
+      Client dummyClient2 = new Client("Max");
+      dummyClient2.Save();
+
+      List<Client> beforeList = Client.GetAll();
+
+      //Act
+      dummyClient1.Delete();
+
+      //Arrange Again
+      List<Client> afterList = Client.GetAll();
+      List<Client> beforeCompareList = new List<Client> {dummyClient1, dummyClient2};
+      List<Client> afterCompareList = new List<Client> {dummyClient2};
+
+      //Assert
+      Assert.Equal(beforeList, beforeCompareList);
+      Assert.Equal(afterList, afterCompareList);
+    }
 /////// Tear Down/////////////
     public void Dispose()
     {
