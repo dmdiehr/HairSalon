@@ -17,8 +17,8 @@ namespace HairSalon.Objects
     public void Test_StylistEqualityOveride()
     {
       //Arrange
-      Client firstStylist = new Client("Jessica");
-      Client secondStylist = new Client("Jessica");
+      Stylist firstStylist = new Stylist("Jessica");
+      Stylist secondStylist = new Stylist("Jessica");
 
       //Act
       //Assert
@@ -45,7 +45,29 @@ namespace HairSalon.Objects
       //Assert
       Assert.Equal(testList, result);
     }
+    [Fact]
+    public void Test_StylistDelete()
+    {
+      //Arrange
+      Stylist dummyStylist1 = new Stylist("Jessica");
+      dummyStylist1.Save();
+      Stylist dummyStylist2 = new Stylist("Melissa");
+      dummyStylist2.Save();
 
+      List<Stylist> beforeList = Stylist.GetAll();
+
+      //Act
+      dummyStylist1.Delete();
+
+      //Arrange Again
+      List<Stylist> afterList = Stylist.GetAll();
+      List<Stylist> beforeCompareList = new List<Stylist> {dummyStylist1, dummyStylist2};
+      List<Stylist> afterCompareList = new List<Stylist> {dummyStylist2};
+
+      //Assert
+      Assert.Equal(beforeList, beforeCompareList);
+      Assert.Equal(afterList, afterCompareList);
+    }
 /////// Tear Down/////////////
     public void Dispose()
     {
