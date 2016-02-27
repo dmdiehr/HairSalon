@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <title>Hair Salon</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Clients for this @Model.Item2</h1>
+      <ul>
+        @if(Model.Item3.Count != 0)
+        {
+          @foreach(var item in Model.Item3)
+          {
+            <li>@item.GetName()<a href="/client/edit/@item.GetId()"> Edit</a> | <a href="/client/delete/@item.GetId()">Delete</a></li>
+          }
+        }
+        else
+        {
+          <h3>No clients for this stylist yet.</h3>
+        }
+      </ul>
+
+      <h2>Enter a new client</h2>
+      <form class="" action="/client/new" method="post">
+        <label for="client-name">New Client: </label>
+        <input type="text" name="client-name">
+        <input type="hidden" name="client-stylistId" value=@Model.Item1>
+        <button type="submit" name="button" class="btn btn-success">Add</button>
+      </form>
+
+      <a href="/">Home</a>
+
+    </div>
+  </body>
+</html>
